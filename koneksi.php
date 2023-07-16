@@ -1,11 +1,7 @@
 <?php
-<<<<<<< HEAD
-
 //Buat koneksi ke database
 $koneksi = mysqli_connect('localhost', 'root', '', 'db_camping');
 
-?>
-=======
 $host = "localhost";
 $user = "root";
 $password = "";
@@ -18,4 +14,3 @@ if (mysqli_connect_errno()) {
    exit();
 }
 ?>
->>>>>>> a7914d9a4cfd9fb88d060b3d6d937d9c479195d4
