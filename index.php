@@ -62,7 +62,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Data Kategori
                             </a>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="penyewaan.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Data Penyewaan
                             </a>
