@@ -15,7 +15,7 @@ require 'koneksi.php';
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Potong Kompas II</a>
             <!-- Sidebar Toggle-->
@@ -23,8 +23,6 @@ require 'koneksi.php';
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
@@ -43,9 +41,9 @@ require 'koneksi.php';
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Dash</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="dashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard Admin
+                                Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Master Data</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -55,10 +53,10 @@ require 'koneksi.php';
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Data Admin</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Data Pelanggan</a>
-                                    <a class="nav-link" href="layout-static.html">Data Barang</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Data Kategori</a>
+                                    <a class="nav-link" href="admin.php">Data Admin</a>
+                                    <a class="nav-link" href="pelanggan.php">Data Pelanggan</a>
+                                    <a class="nav-link" href="barang.php">Data Barang</a>
+                                    <a class="nav-link" href="kategori.php">Data Kategori</a>
                                 </nav>
                             </div>
                             
@@ -78,7 +76,7 @@ require 'koneksi.php';
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Data Barang</h1>
+                        <h1 class="mt-4">Data Admin</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">List Data Admin</li>
                         </ol>

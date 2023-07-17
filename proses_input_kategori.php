@@ -22,9 +22,9 @@ require 'koneksi.php';
 
         // Eksekusi query
         if (mysqli_query($koneksi, $query)) {
-            echo "<div class='alert alert-success'>Data Kategori berhasil disimpan.</div>";
+            echo "<script>alert('Data Kategori berhasil disimpan.'); window.location='kategori.php';</script>";
         } else {
-            echo "<div class='alert alert-danger'>Gagal menyimpan data kategori: " . mysqli_error($koneksi) . "</div>";
+            echo "<div class='alert alert-danger'>Gagal menyimpan Data Kategori: " . mysqli_error($koneksi) . "</div>";
         }
 
         // Tutup koneksi setelah selesai

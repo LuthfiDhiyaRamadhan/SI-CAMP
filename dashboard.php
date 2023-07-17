@@ -1,15 +1,33 @@
 <?php
-    require_once 'koneksi.php';
-    
-    $sql_admin = "SELECT id_admin, nama_admin FROM admin";
-    $result_admin = mysqli_query($koneksi, $sql_admin);
+require 'koneksi.php';
 
-    $sql_pelanggan = "SELECT id_pelanggan, nama_pelanggan FROM pelanggan";
-    $result_pelanggan = mysqli_query($koneksi, $sql_pelanggan);
+// Menghitung Jumlah Transaksi
+$queryTransaksi = "SELECT COUNT(*) AS jumlah_transaksi FROM penyewaan";
+$resultTransaksi = mysqli_query($koneksi, $queryTransaksi);
+$rowTransaksi = mysqli_fetch_assoc($resultTransaksi);
+$jumlahTransaksi = $rowTransaksi['jumlah_transaksi'];
+
+// Menghitung Status Dipinjam
+$queryDipinjam = "SELECT COUNT(*) AS status_dipinjam FROM penyewaan WHERE status = 'Dipinjam'";
+$resultDipinjam = mysqli_query($koneksi, $queryDipinjam);
+$rowDipinjam = mysqli_fetch_assoc($resultDipinjam);
+$statusDipinjam = $rowDipinjam['status_dipinjam'];
+
+// Menghitung Status Kembali
+$queryKembali = "SELECT COUNT(*) AS status_kembali FROM penyewaan WHERE status = 'Kembali'";
+$resultKembali = mysqli_query($koneksi, $queryKembali);
+$rowKembali = mysqli_fetch_assoc($resultKembali);
+$statusKembali = $rowKembali['status_kembali'];
+
+// Menghitung Jumlah Barang
+$queryJumlahBarang = "SELECT COUNT(*) AS jumlah_barang FROM barang";
+$resultJumlahBarang = mysqli_query($koneksi, $queryJumlahBarang);
+$rowJumlahBarang = mysqli_fetch_assoc($resultJumlahBarang);
+$jumlahBarang = $rowJumlahBarang['jumlah_barang'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -20,7 +38,7 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Potong Kompas II</a>
             <!-- Sidebar Toggle-->
@@ -64,7 +82,6 @@
                                     <a class="nav-link" href="kategori.php">Data Kategori</a>
                                 </nav>
                             </div>
-                            
                             <div class="sb-sidenav-menu-heading">Transaksi</div>
                             <a class="nav-link" href="penyewaan.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -80,62 +97,43 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                <div class="container-fluid px-4">
-                        <h1 class="mt-4">Data Kategori Barang </h1>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard Admin</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">List Data Barang</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Form Input Kategori Barang
-                                <form action="proses_input_kategori.php" method="POST">
-                                    <div class="form-group">
-                                        <label for="id_kategori">ID Kategori:</label>
-                                        <input type="text" class="form-control" id="id_kategori" name="id_kategori" required>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Jumlah Transaksi</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <h3><?php echo $jumlahTransaksi; ?></h3>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="nama_kategori">Nama Kategori:</label>
-                                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Status Kembali</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <h3><?php echo $statusKembali; ?></h3>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
+                                </div>
                             </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Status Dipinjam</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <h3><?php echo $statusDipinjam; ?></h3>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th>ID Kategori</th>
-                                    <th>Nama Kategori</th>
-                                    <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                            <tbody>
-                            <?php 
-                            require 'koneksi.php';
-
-                            // Mendapatkan data barang dari database
-                            $query = "SELECT * FROM kategori";
-                            $result = mysqli_query($koneksi, $query);
-                            while ($row = mysqli_fetch_assoc($result)) { ?>
-                                        <tr>
-                                            <td><?php echo $row['id_kategori']; ?></td>
-                                            <td><?php echo $row['nama_kategori']; ?></td>
-                                            <td>
-                                                <a href="edit_kategori.php?id_kategori=<?php echo $row['id_kategori']; ?>" class="btn btn-primary">Edit</a>
-                                                <a href="hapus_kategori.php?id_kategori=<?php echo $row['id_kategori']; ?>" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    <?php } ?> 
-                            </tbody>
-                            </table>   
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Jumlah Barang</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <h3><?php echo $jumlahBarang; ?></h3>
+                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,20 +142,10 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script>
-            function setHargaBarang() {
-                var selectedBarang = document.getElementById("nama_barang").value.split("|");
-                var hargaBarang = parseFloat(selectedBarang[1]);
-                document.getElementById("harga_barang").value = hargaBarang.toFixed(2);
-                hitungTotalBayar();
-            }
-            function hitungTotalBayar() {
-                var hargaBarang = parseFloat(document.getElementById("harga_barang").value);
-                var jumlah = parseFloat(document.getElementById("jumlah").value);
-                var durasi = parseFloat(document.getElementById("durasi").value);
-                var totalBayar = hargaBarang * jumlah * durasi;
-                document.getElementById("total_bayar").value = totalBayar.toFixed(2);
-            }
-        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>

@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stokBarang >= $jumlah) {
         // Insert data into the database
-        $sql = "INSERT INTO penyewaan2 (id_admin, id_pelanggan, id_barang, harga_barang, jumlah, tanggal_sewa, tanggal_kembali, durasi, total_bayar, status)
+        $sql = "INSERT INTO penyewaan (id_admin, id_pelanggan, id_barang, harga_barang, jumlah, tanggal_sewa, tanggal_kembali, durasi, total_bayar, status)
                 VALUES ('$id_admin', '$id_pelanggan', '$id_barang', '$harga_barang', '$jumlah', '$tanggal_sewa', '$tanggal_kembali', '$durasi', '$total_bayar', 'dipinjam')";
 
         if (mysqli_query($koneksi, $sql)) {
@@ -31,17 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_query($koneksi, $updateQuery);
 
             // Data inserted and stock updated successfully
-            echo "<script>alert('Data penyewaan berhasil disimpan.'); window.location='index.html';</script>";
+            echo "<script>alert('Data penyewaan berhasil disimpan.'); window.location='penyewaan.php';</script>";
         } else {
             // Error in inserting data
-            echo "<script>alert('Gagal menyimpan data penyewaan. Silakan coba lagi.'); window.location='index.html';</script>";
+            echo "<script>alert('Gagal menyimpan data penyewaan. Silakan coba lagi.'); window.location='penyewaan.php';</script>";
         }
     } else {
         // Insufficient stock for the selected item
-        echo "<script>alert('Stok barang tidak mencukupi. Silakan pilih jumlah yang lebih kecil.'); window.location='index.html';</script>";
+        echo "<script>alert('Stok barang tidak mencukupi. Silakan pilih jumlah yang lebih kecil.'); window.location='penyewaan.php';</script>";
     }
 } else {
     // If the form is not submitted, redirect back to the form page
-    header("Location: index.html");
+    header("Location: penyewaan.php.");
 }
 ?>

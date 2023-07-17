@@ -12,9 +12,9 @@ $query = "INSERT into  pelanggan (id_pelanggan, nama_pelanggan, no_hp, alamat) V
 
 // Eksekusi query
 if(mysqli_query($koneksi, $query)) {
-    echo "<script>alert('Data pelanggan berhasil disimpan.'); window.location='pelanggan.php';</script>";
+    echo "<script>alert('Data Pelanggan berhasil disimpan.'); window.location='pelanggan.php';</script>";
 } else {
-    echo "<div class='alert alert-danger'>Gagal menyimpan data pelanggan: " . mysqli_error($koneksi) . "</div>";
+    echo "<div class='alert alert-danger'>Gagal menyimpan Data Pelanggan: " . mysqli_error($koneksi) . "</div>";
 }
 
 // Tutup koneksi setelah selesai

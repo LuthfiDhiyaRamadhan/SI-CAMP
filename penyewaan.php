@@ -28,8 +28,6 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
@@ -48,9 +46,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Dash</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="dashboard.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard Admin
+                                Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Master Data</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -60,13 +58,12 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Data Admin</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Data Pelanggan</a>
-                                    <a class="nav-link" href="layout-static.html">Data Barang</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Data Kategori</a>
+                                    <a class="nav-link" href="admin.php">Data Admin</a>
+                                    <a class="nav-link" href="pelanggan.php">Data Pelanggan</a>
+                                    <a class="nav-link" href="barang.php">Data Barang</a>
+                                    <a class="nav-link" href="kategori.php">Data Kategori</a>
                                 </nav>
                             </div>
-                            
                             <div class="sb-sidenav-menu-heading">Transaksi</div>
                             <a class="nav-link" href="penyewaan.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -169,8 +166,11 @@
             function hitungTotalBayar() {
                 var hargaBarang = parseFloat(document.getElementById("harga_barang").value);
                 var jumlah = parseFloat(document.getElementById("jumlah").value);
-                var durasi = parseFloat(document.getElementById("durasi").value);
+                var tanggalSewa = new Date(document.getElementById("tanggal_sewa").value);
+                var tanggalKembali = new Date(document.getElementById("tanggal_kembali").value);
+                var durasi = (tanggalKembali - tanggalSewa) / (1000 * 60 * 60 * 24); // Convert milliseconds to days
                 var totalBayar = hargaBarang * jumlah * durasi;
+                document.getElementById("durasi").value = durasi;
                 document.getElementById("total_bayar").value = totalBayar.toFixed(2);
             }
         </script>

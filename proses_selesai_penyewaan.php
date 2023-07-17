@@ -6,10 +6,10 @@ if (isset($_GET['selesai_id'])) {
     $selesai_id = $_GET['selesai_id'];
 
     // Update status penyewaan menjadi "Kembali"
-    $querySelesai = "UPDATE penyewaan2 SET status = 'Kembali' WHERE id_penyewaann = '$selesai_id'";
+    $querySelesai = "UPDATE penyewaan SET status = 'Kembali' WHERE id_penyewaan = '$selesai_id'";
     if (mysqli_query($koneksi, $querySelesai)) {
         // Mengembalikan stok barang
-        $queryPenyewaan = "SELECT id_barang, jumlah FROM penyewaan2 WHERE id_penyewaann = '$selesai_id'";
+        $queryPenyewaan = "SELECT id_barang, jumlah FROM penyewaan WHERE id_penyewaan = '$selesai_id'";
         $resultPenyewaan = mysqli_query($koneksi, $queryPenyewaan);
         $rowPenyewaan = mysqli_fetch_assoc($resultPenyewaan);
 
@@ -25,11 +25,10 @@ if (isset($_GET['selesai_id'])) {
     }
 }
 
-// Proses saat form penyewaan di-submit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ... (Kode sebelumnya untuk memproses penyewaan)
+    
 } else {
-    // If the form is not submitted, redirect back to the form page
+
     header("Location: tabel_penyewaan.php");
 }
 ?>
