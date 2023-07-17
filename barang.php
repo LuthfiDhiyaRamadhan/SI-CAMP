@@ -132,7 +132,7 @@ $resultKategori = mysqli_query($koneksi, $queryKategori);
                                 <i class="fas fa-table me-1"></i>
                                 Form Input Data Barang
                                 <form method="POST" action="proses_input_barang.php">
-            <div class="form-group">
+                                <div class="form-group">
                 <label for="id_barang">ID Barang</label>
                 <input type="text" class="form-control" id="id_barang" name="id_barang" required>
             </div>

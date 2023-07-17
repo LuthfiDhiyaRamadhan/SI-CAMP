@@ -10,9 +10,11 @@ $query = "UPDATE kategori SET nama_kategori='$nama_kategori' WHERE id_kategori='
 
 // Eksekusi query
 if (mysqli_query($koneksi, $query)) {
-    echo "Data kategori berhasil diupdate.";
+    echo "<script>alert('Data kategori berhasil diperbarui.');</script>";
+    echo "<script>window.location.href = 'kategori.php';</script>";
 } else {
-    echo "Gagal mengupdate data kategori: " . mysqli_error($koneksi);
+    echo "<script>alert('Gagal memperbarui data kategori: " . mysqli_error($koneksi) . "');</script>";
+    echo "<script>window.history.back();</script>";
 }
 
 // Tutup koneksi setelah selesai
