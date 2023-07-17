@@ -85,9 +85,8 @@
                             <li class="breadcrumb-item active">Input Penyewaaan</li>
                         </ol>
                         <div class="card mb-4">
-                            <div class="card-header">
+                        <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Form Input Data Admin
                                 <form method="POST" action="proses_input_penyewaan.php">
                                     <div class="form-group">
                                         <label for="id_admin">ID Admin:</label>

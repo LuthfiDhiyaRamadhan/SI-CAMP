@@ -21,7 +21,7 @@ $id_admin = $_GET['id_admin'];
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-       <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Potong Kompas II</a>
             <!-- Sidebar Toggle-->
@@ -43,7 +43,7 @@ $id_admin = $_GET['id_admin'];
         </nav>
         <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Dash</div>
@@ -77,80 +77,38 @@ $id_admin = $_GET['id_admin'];
                         </div>
                     </div>
                 </nav>
-        </div>        
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">Form Penyewaan</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Input Penyewaaan</li>
-                </ol>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                             Form Input Data Admin
-                                <form method="POST" action="proses_input_penyewaan.php">
-                                    <div class="form-group">
-                                        <label for="id_admin">ID Admin:</label>
-                                        <select class="form-control" id="id_admin" name="id_admin" required>
-                                            <?php while ($row_admin = mysqli_fetch_assoc($result_admin)) { ?>
-                                            <option value="<?php echo $row_admin['id_admin']; ?>"><?php echo $row_admin['nama_admin']; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="id_pelanggan">Nama Pelanggan:</label>
-                                        <select class="form-control" id="id_pelanggan" name="id_pelanggan" required>
-                                            <?php while ($row_pelanggan = mysqli_fetch_assoc($result_pelanggan)) { ?>
-                                            <option value="<?php echo $row_pelanggan['id_pelanggan']; ?>"><?php echo $row_pelanggan['nama_pelanggan']; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nama_barang">Nama Barang</label>
-                                        <select class="form-control" id="nama_barang" name="nama_barang" required onchange="setHargaBarang()">
-                                        <option value="">Pilih Barang</option>
-                                        <?php
-                                        $queryBarang = "SELECT id_barang, nama_barang, harga_sewa FROM barang";
-                                        $resultBarang = mysqli_query($koneksi, $queryBarang);
-                                        while ($row = mysqli_fetch_assoc($resultBarang)) {
-                                            echo "<option value='" . $row['id_barang'] . "|" . $row['harga_sewa'] . "'>" . $row['nama_barang'] . "</option>";
-                                        }
-                                        ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="harga_barang">Harga Barang</label>
-                                        <input type="text" class="form-control" id="harga_barang" name="harga_barang" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jumlah">Jumlah</label>
-                                        <input type="number" class="form-control" id="jumlah" name="jumlah" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tanggal_sewa">Tanggal Sewa</label>
-                                        <input type="date" class="form-control" id="tanggal_sewa" name="tanggal_sewa" required onchange="hitungTotalBayar()" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tanggal_kembali">Tanggal Kembali</label>
-                                        <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required onchange="hitungTotalBayar()" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="durasi">Durasi (hari)</label>
-                                        <input type="number" class="form-control" id="durasi" name="durasi" required onchange="hitungTotalBayar()" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="total_bayar">Total Bayar</label>
-                                        <input type="text" class="form-control" id="total_bayar" name="total_bayar" readonly />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="status">Status</label>
-                                        <input type="text" class="form-control" id="status" name="status" value="Dipinjam" readonly>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </form>
-                        </div>
-                    </div>
-        </div>
-        </div>
+            </div>
+            <div id="layoutSidenav_content">
+            <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Form Edit Admin</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Data Admin</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Form Edit Admin
+                                <form action="proses_edit_admin.php?aksi=edit" method="POST">
+            <input type="hidden" name="id_admin" value="<?php echo $admin['id_admin']; ?>">
+            <div class="form-group">
+                <label for="nama_admin">Nama Admin</label>
+                <input type="text" class="form-control" id="nama_admin" name="nama_admin" value="<?php echo $admin['nama_admin']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo $admin['username']; ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" value="<?php echo $admin['password']; ?>" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
+                            </div>
+                       
+                </main>
+            </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
