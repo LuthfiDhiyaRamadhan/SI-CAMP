@@ -1,17 +1,5 @@
 <?php
-require 'koneksi.php';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Proses Input Barang</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        
-        <?php
-       
+       require 'koneksi.php';
         // Tangkap data dari form input barang
         $id_kategori = $_POST['id_kategori'];
         $nama_kategori = $_POST['nama_kategori'];
@@ -30,7 +18,4 @@ require 'koneksi.php';
         // Tutup koneksi setelah selesai
         mysqli_close($koneksi);
         ?>
-        <a href="kategori.php" class="btn btn-primary">Kembali ke Form Input Kategori</a>
-    </div>
-</body>
-</html>
+        
