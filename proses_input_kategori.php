@@ -9,7 +9,7 @@ require 'koneksi.php';
 </head>
 <body>
     <div class="container">
-        <h1>Proses Input Kategori</h1>
+        
         <?php
        
         // Tangkap data dari form input barang
@@ -22,7 +22,7 @@ require 'koneksi.php';
 
         // Eksekusi query
         if (mysqli_query($koneksi, $query)) {
-            echo "<script>alert('Data Kategori berhasil disimpan.'); window.location='kategori.php';</script>";
+            echo "<script>alert('Data kategori berhasil disimpan.'); window.location='kategori.php';</script>";
         } else {
             echo "<div class='alert alert-danger'>Gagal menyimpan Data Kategori: " . mysqli_error($koneksi) . "</div>";
         }
